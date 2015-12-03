@@ -6,7 +6,7 @@ branches:
   only:
   - 1-3-stable
 rvm:
-- 1.9.3
+- 2.1.7
 notifications:
   slack:
     secure: he/ftnnue2tQp7V3zIJAjpvnv653+geFGsIJcitqQlok/tv8UJkkUxolZTKD8MBNarIXdGnSWDMo4gH7QP3FzHvx2TV5BPwKsU6ShMPcKaDeXlnn9/Z5jQ8zmLO3lEP/saT9tX9SM8HJRScAophk+FIdnGx/YlXQloa1drEAZNA=
