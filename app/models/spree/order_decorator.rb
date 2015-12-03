@@ -11,7 +11,7 @@ module Spree
 
     def garbage?
       garbage_after = Spree::GarbageCleaner::Config.cleanup_days_interval
-      completed_at.nil? && created_at <= garbage_after.days.ago
+      completed_at.nil? && updated_at <= garbage_after.days.ago
     end
   end
 end
