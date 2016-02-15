@@ -5,8 +5,9 @@ describe Spree::Order do
 
   context "class methods" do
     before do
-      @order_one = Factory(:order, :created_at => (ordered_on+rand(10)).days.ago, :completed_at => nil, :user => nil)
-      @order_two = Factory(:order, :created_at => (ordered_on+rand(10)).days.ago, :completed_at => nil, :user => nil)
+      created_at = (ordered_on + rand(10)).days.ago
+      @order_one = Factory(:order, created_at: created_at, updated_at: created_at, completed_at: nil, user: nil)
+      @order_two = Factory(:order, created_at: created_at, updated_at: created_at, completed_at: nil, user: nil)
       @order_three = Factory(:order)
     end
 
@@ -28,22 +29,22 @@ describe Spree::Order do
     end
 
     it "is garbage if not completed and past cleanup_days_interval" do
-      order = Factory.build(:order, :created_at => ordered_on.days.ago, :completed_at => nil)
+      order = Factory.build(:order, updated_at: ordered_on.days.ago, completed_at: nil)
       order.garbage?.should be_true
     end
 
     it "is not garbage if not completed and not past cleanup_days_interval" do
-      order = Factory.build(:order, :created_at => (ordered_on-1).days.ago, :completed_at => nil)
+      order = Factory.build(:order, updated_at: (ordered_on-1).days.ago, completed_at: nil)
       order.garbage?.should be_false
     end
 
     it "is not garbage if completed and past cleanup_days_interval" do
-      order = Factory.build(:order, :created_at => ordered_on.days.ago, :completed_at => Time.now)
+      order = Factory.build(:order, updated_at: ordered_on.days.ago, completed_at: Time.now)
       order.garbage?.should be_false
     end
 
     it "is not garbage if completed and not past cleanup_days_interval" do
-      order = Factory.build(:order, :completed_at => Time.now)
+      order = Factory.build(:order, completed_at: Time.now)
       order.garbage?.should be_false
     end
   end
