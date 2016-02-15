@@ -5,9 +5,8 @@ describe Spree::Order do
 
   context "class methods" do
     before do
-      created_at = (ordered_on + rand(10)).days.ago
-      @order_one = Factory(:order, created_at: created_at, updated_at: created_at, completed_at: nil, user: nil)
-      @order_two = Factory(:order, created_at: created_at, updated_at: created_at, completed_at: nil, user: nil)
+      @order_one = Factory(:order, created_at: (ordered_on+rand(10)).days.ago, updated_at: ordered_on, completed_at: nil)
+      @order_two = Factory(:order, created_at: (ordered_on+rand(10)).days.ago, updated_at: ordered_on, completed_at: nil)
       @order_three = Factory(:order)
     end
 
